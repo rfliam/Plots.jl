@@ -55,9 +55,11 @@ tex(fn::AbstractString) = tex(current(), fn)
 function html(plt::Plot, fn::AbstractString)
     fn = addExtension(fn, "html")
     io = open(fn, "w")
-    _use_remote[] = true
+    #_use_remote[] = true
+    use_local_dependencies[] = false
     show(io, MIME("text/html"), plt)
-    _use_remote[] = false
+    use_local_dependencies[] = true
+    #_use_remote[] = false
     close(io)
 end
 html(fn::AbstractString) = html(current(), fn)
